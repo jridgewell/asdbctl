@@ -1,5 +1,6 @@
+use anyhow::{anyhow, Result};
 use clap::{Args, Parser, Subcommand};
-use std::{error::Error, time::Duration};
+use std::time::Duration;
 
 const MIN_BRIGHTNESS: u16 = 400;
 const MAX_BRIGHTNESS: u16 = 60000;
@@ -62,7 +63,7 @@ fn get_request_data(nits: u16) -> [u8; 7] {
     return result;
 }
 
-fn get_studio_display(ctx: &libusb::Context) -> Result<libusb::Device, Box<dyn Error>> {
+fn get_studio_display(ctx: &libusb::Context) -> Result<libusb::Device> {
     let usb_devices = ctx.devices()?;
     for device in usb_devices.iter() {
         let device_desc = device.device_descriptor()?;
@@ -70,10 +71,10 @@ fn get_studio_display(ctx: &libusb::Context) -> Result<libusb::Device, Box<dyn E
             return Ok(device);
         }
     }
-    return Err("No Apple Studio Display connected".into());
+    Err(anyhow!("No Apple Studio Display connected"))
 }
 
-fn set_brightness(dev: &libusb::Device, nits: u16) -> Result<(), Box<dyn Error>> {
+fn set_brightness(dev: &libusb::Device, nits: u16) -> Result<()> {
     let buffer = get_request_data(nits);
     let mut handle = dev.open()?;
     handle.detach_kernel_driver(SD_BRIGHTNESS_INTERFACE)?;
@@ -96,7 +97,7 @@ fn set_brightness(dev: &libusb::Device, nits: u16) -> Result<(), Box<dyn Error>>
     Ok(())
 }
 
-fn get_brightness(dev: &libusb::Device) -> Result<u16, Box<dyn Error>> {
+fn get_brightness(dev: &libusb::Device) -> Result<u16> {
     let mut buffer: [u8; 7] = [0; 7];
     let mut handle = dev.open()?;
     handle.detach_kernel_driver(SD_BRIGHTNESS_INTERFACE)?;
@@ -120,7 +121,7 @@ fn get_brightness(dev: &libusb::Device) -> Result<u16, Box<dyn Error>> {
     Ok(u16::from_le_bytes(nit_bytes))
 }
 
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() -> Result<()> {
     let cli_args = Cli::parse();
     let ctx = libusb::Context::new()?;
     let studio_display = get_studio_display(&ctx)?;
