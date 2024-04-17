@@ -1,6 +1,7 @@
 use anyhow::{anyhow, Result};
 use clap::{Args, Parser, Subcommand};
 use std::time::Duration;
+use rusb::{GlobalContext as Context, Device};
 
 const MIN_BRIGHTNESS: u16 = 400;
 const MAX_BRIGHTNESS: u16 = 60000;
@@ -63,10 +64,10 @@ fn get_request_data(nits: u16) -> [u8; 7] {
     return result;
 }
 
-fn get_studio_display(ctx: &libusb::Context) -> Result<libusb::Device> {
-    let usb_devices = ctx.devices()?;
+fn get_studio_display() -> Result<Device<Context>> {
+    let usb_devices = rusb::devices().unwrap();
     for device in usb_devices.iter() {
-        let device_desc = device.device_descriptor()?;
+        let device_desc = device.device_descriptor().unwrap();
         if device_desc.product_id() == SD_PRODUCT_ID && device_desc.vendor_id() == SD_VENDOR_ID {
             return Ok(device);
         }
@@ -74,15 +75,15 @@ fn get_studio_display(ctx: &libusb::Context) -> Result<libusb::Device> {
     Err(anyhow!("No Apple Studio Display connected"))
 }
 
-fn set_brightness(dev: &libusb::Device, nits: u16) -> Result<()> {
+fn set_brightness(dev: &Device<Context>, nits: u16) -> Result<()> {
     let buffer = get_request_data(nits);
-    let mut handle = dev.open()?;
-    handle.detach_kernel_driver(SD_BRIGHTNESS_INTERFACE)?;
-    handle.claim_interface(SD_BRIGHTNESS_INTERFACE)?;
-    let request_type = libusb::request_type(
-        libusb::Direction::Out,
-        libusb::RequestType::Class,
-        libusb::Recipient::Interface,
+    let mut handle = dev.open().unwrap();
+    // handle.detach_kernel_driver(SD_BRIGHTNESS_INTERFACE).unwrap();
+    handle.claim_interface(SD_BRIGHTNESS_INTERFACE).unwrap();
+    let request_type = rusb::request_type(
+        rusb::Direction::Out,
+        rusb::RequestType::Class,
+        rusb::Recipient::Interface,
     );
     handle.write_control(
         request_type,                   // bmRequestType
@@ -91,21 +92,21 @@ fn set_brightness(dev: &libusb::Device, nits: u16) -> Result<()> {
         SD_BRIGHTNESS_INTERFACE.into(), // wIndex        HID - Interface
         &buffer,
         Duration::from_secs(1),
-    )?;
-    handle.release_interface(SD_BRIGHTNESS_INTERFACE)?;
-    handle.attach_kernel_driver(SD_BRIGHTNESS_INTERFACE)?;
+    ).unwrap();
+    handle.release_interface(SD_BRIGHTNESS_INTERFACE).unwrap();
+    // handle.attach_kernel_driver(SD_BRIGHTNESS_INTERFACE).unwrap();
     Ok(())
 }
 
-fn get_brightness(dev: &libusb::Device) -> Result<u16> {
+fn get_brightness(dev: &Device<Context>) -> Result<u16> {
     let mut buffer: [u8; 7] = [0; 7];
-    let mut handle = dev.open()?;
-    handle.detach_kernel_driver(SD_BRIGHTNESS_INTERFACE)?;
-    handle.claim_interface(SD_BRIGHTNESS_INTERFACE)?;
-    let request_type = libusb::request_type(
-        libusb::Direction::In,
-        libusb::RequestType::Class,
-        libusb::Recipient::Interface,
+    let mut handle = dev.open().unwrap();
+    // handle.detach_kernel_driver(SD_BRIGHTNESS_INTERFACE).unwrap();
+    handle.claim_interface(SD_BRIGHTNESS_INTERFACE).unwrap();
+    let request_type = rusb::request_type(
+        rusb::Direction::In,
+        rusb::RequestType::Class,
+        rusb::Recipient::Interface,
     );
     handle.read_control(
         request_type,                   // bmRequestType
@@ -114,17 +115,16 @@ fn get_brightness(dev: &libusb::Device) -> Result<u16> {
         SD_BRIGHTNESS_INTERFACE.into(), // wIndex        HID - Interface
         &mut buffer,
         Duration::from_secs(1),
-    )?;
-    handle.release_interface(SD_BRIGHTNESS_INTERFACE)?;
-    handle.attach_kernel_driver(SD_BRIGHTNESS_INTERFACE)?;
+    ).unwrap();
+    handle.release_interface(SD_BRIGHTNESS_INTERFACE).unwrap();
+    // handle.attach_kernel_driver(SD_BRIGHTNESS_INTERFACE).unwrap();
     let nit_bytes: [u8; 2] = [buffer[1], buffer[2]];
     Ok(u16::from_le_bytes(nit_bytes))
 }
 
 fn main() -> Result<()> {
     let cli_args = Cli::parse();
-    let ctx = libusb::Context::new()?;
-    let studio_display = get_studio_display(&ctx)?;
+    let studio_display = get_studio_display().unwrap();
 
     match &cli_args.command {
         Commands::Set(set_args) => {
@@ -132,10 +132,10 @@ fn main() -> Result<()> {
             if cli_args.verbose.unwrap_or_default() {
                 println!("Setting brightness to: {}", nits);
             }
-            set_brightness(&studio_display, nits)?;
+            set_brightness(&studio_display, nits).unwrap();
         }
         Commands::Get => {
-            let nits = get_brightness(&studio_display)?;
+            let nits = get_brightness(&studio_display).unwrap();
             println!("Brightness is set to: {}", nits);
         }
     }
