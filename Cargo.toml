@@ -3,10 +3,19 @@ name = "asdbctl"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = ["cdylib"]
 
 [dependencies]
+# Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
+napi = { version = "2.12.2", default-features = false, features = ["napi4"] }
+napi-derive = "2.12.2"
 anyhow = "1.0.82"
-clap = { version = "4.0", features = ["derive"] }
-clap-num = "1.0.2"
 rusb = "0.9.3"
+
+[build-dependencies]
+napi-build = "2.0.1"
+
+[profile.release]
+lto = true
+strip = "symbols"
