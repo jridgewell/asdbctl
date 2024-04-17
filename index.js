@@ -29,36 +29,6 @@ function isMusl() {
 }
 
 switch (platform) {
-  case 'android':
-    switch (arch) {
-      case 'arm64':
-        localFileExisted = existsSync(join(__dirname, 'asdbctl.android-arm64.node'))
-        try {
-          if (localFileExisted) {
-            nativeBinding = require('./asdbctl.android-arm64.node')
-          } else {
-            nativeBinding = require('asdbctl-android-arm64')
-          }
-        } catch (e) {
-          loadError = e
-        }
-        break
-      case 'arm':
-        localFileExisted = existsSync(join(__dirname, 'asdbctl.android-arm-eabi.node'))
-        try {
-          if (localFileExisted) {
-            nativeBinding = require('./asdbctl.android-arm-eabi.node')
-          } else {
-            nativeBinding = require('asdbctl-android-arm-eabi')
-          }
-        } catch (e) {
-          loadError = e
-        }
-        break
-      default:
-        throw new Error(`Unsupported architecture on Android ${arch}`)
-    }
-    break
   case 'win32':
     switch (arch) {
       case 'x64':

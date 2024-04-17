@@ -158,6 +158,66 @@ arrify@^3.0.0:
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-3.0.0.tgz#ccdefb8eaf2a1d2ab0da1ca2ce53118759fd46bc"
   integrity sha512-tLkvA81vQG/XqE2mjDkGQHoOINtMHtysSnemrmoGe6PydDPMRbVugqyk4A6V/WDWEfm3l+0d8anA9r8cv/5Jaw==
 
+asdbctl-darwin-arm64@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-darwin-arm64/-/asdbctl-darwin-arm64-0.0.0.tgz#f571f48e200e18618a95e0192b11c775b4a879e6"
+  integrity sha512-iinJs/7WPAb/R/INgs0gVpAsFQNVw8m0S006aTYQCbjLvrdXFStBrjZjYm3oLds9mpojxSZ7keYpPQqTaazs9Q==
+
+asdbctl-darwin-universal@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-darwin-universal/-/asdbctl-darwin-universal-0.0.0.tgz#eb63b02d72c38ac5ae0aea27362fd37acf422300"
+  integrity sha512-DwRhum7xng7zcXtxG8yYINqs5Nh2euc7+4Q5SgG10vUkJMMydTTpY/ZC3jp9Utgyn0F92qORs+2iD62ftg1aKA==
+
+asdbctl-darwin-x64@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-darwin-x64/-/asdbctl-darwin-x64-0.0.0.tgz#fe9de8150e7bc0470be051475a495c16fdbaa7ad"
+  integrity sha512-tq3dpA4E7YLN0lpOOxSUvqcN3rSpCjTUNh2FoDtZyclwbQeO7IA4XUe1xbRSpnrBwroqViyHIyxtrL7JyQKOFA==
+
+asdbctl-freebsd-x64@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-freebsd-x64/-/asdbctl-freebsd-x64-0.0.0.tgz#560b2d9fa07793fe60188aca21bf76aaa7e91991"
+  integrity sha512-nhC/+11+ZO1kQKA4bhz2ZPWUd+MSpErziKrAvIkXNtSOLkkIoXO/MwwQSPq/dPZ5AVr2dtA12LgcF7eDNh6p/g==
+
+asdbctl-linux-arm-gnueabihf@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-arm-gnueabihf/-/asdbctl-linux-arm-gnueabihf-0.0.0.tgz#ec2f78899dea74de265df38a179216c205dd9a5d"
+  integrity sha512-fpFVsMF79MfDRcoi/bpCAKewlIhvHFmL9vR1bByQwDwUpVgu8vO+yFOX87b4VTbI01ZbB3G6YamM6OX0a+2hJg==
+
+asdbctl-linux-arm-musleabihf@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-arm-musleabihf/-/asdbctl-linux-arm-musleabihf-0.0.0.tgz#b65cc222e65d17dfab3dec3e1b4dc025b55aae04"
+  integrity sha512-cyieddomJKe5hr0OVZoKtH2K+zjAADBS9cNG4cx9iWju9sV0572Fj1tMumg4Uq+Y9DFrqEzkOJ68U40ZLovNIw==
+
+asdbctl-linux-arm64-gnu@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-arm64-gnu/-/asdbctl-linux-arm64-gnu-0.0.0.tgz#f3ed6f8530a803db5d0313f61aa2e64145b23aa4"
+  integrity sha512-AqDncsGNbjQMj73WkVtyVZNgiImgpyowUvxLkgSbU2aBPBwbgkORbQeavKyyMCpl8OKid2zZEj/gGtfCRgu2GA==
+
+asdbctl-linux-arm64-musl@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-arm64-musl/-/asdbctl-linux-arm64-musl-0.0.0.tgz#a0d77eb6c023adb94b3fb30d59be558179141059"
+  integrity sha512-6vOZm+FoUPysPK9/P8XsvX/AjMCFJ55dD1MN3wmyst15Wo+nhk9PwALAaQCf7q+dYLw1T4rrSyXuPWSwDtwtrg==
+
+asdbctl-linux-riscv64-gnu@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-riscv64-gnu/-/asdbctl-linux-riscv64-gnu-0.0.0.tgz#070d1ce8761b8ae79d23886baa11cc4ce6f49f7a"
+  integrity sha512-TGzvU0iNhtTxoWsVm5rAtfZN8ZRsk0RhuZP3E8R8E3gupZEQUB6+jrrwkFWxfi/4XsVEuTFm6FMOxX9soZc0RA==
+
+asdbctl-linux-x64-gnu@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-x64-gnu/-/asdbctl-linux-x64-gnu-0.0.0.tgz#c14ad07e2a3c539259ac4e78fdf7d38743043a3c"
+  integrity sha512-TxAA7/J9bpZT6BBPFM4d6OXjk+KTDal0HraaIjMD+sYf7/v3PK6yMQSuFib1Y78R602Fltyq1ImLUo12i6+4KQ==
+
+asdbctl-linux-x64-musl@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-linux-x64-musl/-/asdbctl-linux-x64-musl-0.0.0.tgz#6fca6ae5b7891ce52b8d1b547974424a9da4214e"
+  integrity sha512-ygve8jSLCkqTDJwX1tLQZUdRVYx/g3Ltm15jlgqg1tRh0MDR1dEx8bLLZDVBp1MU6zOXqHJM5XXA6ZscNrevLw==
+
+asdbctl-win32-arm64-msvc@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/asdbctl-win32-arm64-msvc/-/asdbctl-win32-arm64-msvc-0.0.0.tgz#2e083016366f1d35237ffdf764685fca00dceef5"
+  integrity sha512-8AjLHFhtVokp3PwWfV11SG724fbNHAvm0U9Ms0iLRyEWT6lmOut9ApWXTXlcXNLCGvSXz+HPDms6CX7yNFw08w==
+
 async-sema@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/async-sema/-/async-sema-3.1.1.tgz#e527c08758a0f8f6f9f15f799a173ff3c40ea808"
