@@ -1,6 +1,7 @@
 {
   "name": "asdbctl",
   "version": "0.0.0",
+  "description": "Get/Set the brightness for an Apple Studio Display",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
