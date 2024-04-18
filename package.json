@@ -7,28 +7,25 @@
   "napi": {
     "name": "asdbctl",
     "triples": {
+      "defaults": false,
       "additional": [
-        "aarch64-apple-darwin",
         "aarch64-unknown-linux-gnu",
         "aarch64-unknown-linux-musl",
         "aarch64-pc-windows-msvc",
         "armv7-unknown-linux-gnueabihf",
         "armv7-unknown-linux-musleabihf",
+        "x86_64-pc-windows-msvc",
+        "x86_64-unknown-linux-gnu",
         "x86_64-unknown-linux-musl",
         "x86_64-unknown-freebsd",
         "i686-pc-windows-msvc",
-        "universal-apple-darwin",
         "riscv64gc-unknown-linux-gnu"
       ]
     }
   },
   "license": "MIT",
   "devDependencies": {
-    "@napi-rs/cli": "^2.18.1",
-    "ava": "^6.0.1"
-  },
-  "ava": {
-    "timeout": "3m"
+    "@napi-rs/cli": "^2.18.2"
   },
   "engines": {
     "node": ">= 10"
@@ -38,24 +35,9 @@
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "ava",
+    "test": "",
     "universal": "napi universal",
     "version": "napi version"
   },
-  "optionalDependencies": {
-    "asdbctl-win32-x64-msvc": "0.0.0",
-    "asdbctl-darwin-x64": "0.0.0",
-    "asdbctl-linux-x64-gnu": "0.0.0",
-    "asdbctl-darwin-arm64": "0.0.0",
-    "asdbctl-linux-arm64-gnu": "0.0.0",
-    "asdbctl-linux-arm64-musl": "0.0.0",
-    "asdbctl-win32-arm64-msvc": "0.0.0",
-    "asdbctl-linux-arm-gnueabihf": "0.0.0",
-    "asdbctl-linux-arm-musleabihf": "0.0.0",
-    "asdbctl-linux-x64-musl": "0.0.0",
-    "asdbctl-freebsd-x64": "0.0.0",
-    "asdbctl-win32-ia32-msvc": "0.0.0",
-    "asdbctl-darwin-universal": "0.0.0",
-    "asdbctl-linux-riscv64-gnu": "0.0.0"
-  }
+  "packageManager": "yarn@4.1.1"
 }
