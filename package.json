@@ -1,7 +1,6 @@
 {
   "name": "asdbctl",
   "version": "0.0.0",
-  "description": "Get/Set the brightness for an Apple Studio Display",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
@@ -10,15 +9,10 @@
       "defaults": false,
       "additional": [
         "aarch64-unknown-linux-gnu",
-        "aarch64-unknown-linux-musl",
         "aarch64-pc-windows-msvc",
-        "armv7-unknown-linux-gnueabihf",
-        "armv7-unknown-linux-musleabihf",
         "x86_64-pc-windows-msvc",
         "x86_64-unknown-linux-gnu",
-        "x86_64-unknown-linux-musl",
         "x86_64-unknown-freebsd",
-        "i686-pc-windows-msvc",
         "riscv64gc-unknown-linux-gnu"
       ]
     }
@@ -38,5 +32,6 @@
     "test": "",
     "universal": "napi universal",
     "version": "napi version"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
