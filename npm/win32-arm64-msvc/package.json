@@ -1,6 +1,9 @@
 {
   "name": "asdbctl-win32-arm64-msvc",
   "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/jridgewell/asdbctl"
+  },
   "os": [
     "win32"
   ],

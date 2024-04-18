@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "main": "index.js",
   "types": "index.d.ts",
+  "repository": {
+    "url": "https://github.com/jridgewell/asdbctl"
+  },
   "napi": {
     "name": "asdbctl",
     "triples": {
